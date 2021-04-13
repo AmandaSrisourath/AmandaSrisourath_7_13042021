@@ -1,0 +1,33 @@
+{
+  "name": "lespetitsplats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./src/sass/main.scss:./public/css/style.css",
+    "sass-prod": "sass ./src/sass/main.scss:./public/css/style.css --style compressed",
+    "prefix": "postcss ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/",
+    "dev": "webpack --config webpack.dev.config.js",
+    "build": "webpack --config webpack.prod.config.js",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmandaSrisourath/AmandaSrisourath_7_13042021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmandaSrisourath/AmandaSrisourath_7_13042021/issues"
+  },
+  "homepage": "https://github.com/AmandaSrisourath/AmandaSrisourath_7_13042021#readme",
+  "dependencies": {
+    "bootstrap": "^4.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-plugin-react": "^7.23.2",
+    "webpack": "^5.32.0"
+  },
+  "keywords": []
+}
