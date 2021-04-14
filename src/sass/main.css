@@ -9928,8 +9928,33 @@ h3 {
     border-color: #dee2e6;
   }
 }
-#salutations {
-  color: blue;
+.recipe {
+  background-color: grey;
+}
+
+::placeholder {
+  color: white;
+}
+
+.color-blue {
+  color: white;
+  background-color: #1E90FF;
+  border: none;
+  outline: none;
+}
+
+.color-green {
+  color: white;
+  background-color: #90EE90;
+  border: none;
+  outline: none;
+}
+
+.color-red {
+  color: white;
+  background-color: #FF6347;
+  border: none;
+  outline: none;
 }
 
 /*# sourceMappingURL=main.css.map */

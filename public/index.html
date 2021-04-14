@@ -9,9 +9,81 @@
     <title>Les petits plats</title>
 </head>
 <body>
+    <header>
+        <div class="text-center">
+            <img src="../public/Logo/logo.png" alt=""/>
+        </div>
 
-<h1 id="salutations">Hello</h1>
+        <nav>
+            <div class="container p-3">
+                <input id="research" name="research" type="search" class="form-control" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+            </div>
+        </nav>
+    </header>
 
-<script src="bundle.js"></script>
+    <main>
+        <div class="container">
+            <div class="btn-group">
+                <input type="text" class="color-blue dropdown-input" placeholder="Ingrédients" />
+                <button id="dropdown-btn" type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split color-blue" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu" id="dropdown-menu-ing">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+
+            <div class="btn-group p-2">
+                <input type="text" class="color-green dropdown-input" placeholder="Appareil" />
+                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split color-green" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <input type="text" class="color-red dropdown-input" placeholder="Ustensiles" />
+                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split color-red" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <div class="row row-cols-lg-3">
+                <div class="col p-3 ">
+                    <div class="p-3 recipe">Limonade de Coco</div>
+                </div>
+                <div class="col p-3">
+                    <div class="p-3 recipe">Poisson Cru à la tahitienne</div>
+                </div>
+                <div class="col p-3">
+                    <div class="p-3 recipe">Poulet coco réunionnais</div>
+                </div>
+                <div class="col p-3">
+                    <div class="p-3 recipe">Salade de riz</div>
+                </div>
+                <div class="col p-3">
+                    <div class="p-3 recipe">Tarte au thon</div>
+                </div>
+                <div class="col p-3">
+                    <div class="p-3 recipe">Tarte aux pommes</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="bundle.js"></script>
 </body>
 </html>
