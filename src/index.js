@@ -1,4 +1,6 @@
-import 'bootstrap';
+import "bootstrap";
+import recipes from "./recipes.js";
+console.log(recipes);
 
 const dropdown = document.querySelectorAll(".dropdown-input");
 

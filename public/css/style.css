@@ -9928,8 +9928,27 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.form-control {
+  background-color: #F5F5F5;
+  border: none;
+  padding: 32px;
+}
+
+input {
+  padding: 16px;
+  width: 120px;
+  border-radius: 4px 0px 0px 4px;
+  border: none;
+  outline: none;
+}
+
+button.btn {
+  border: none;
+}
+
 .recipe {
-  background-color: grey;
+  background-color: #DCDCDC;
+  border-radius: 4px;
 }
 
 ::placeholder {
@@ -9939,22 +9958,16 @@ h3 {
 .color-blue {
   color: white;
   background-color: #1E90FF;
-  border: none;
-  outline: none;
 }
 
 .color-green {
   color: white;
-  background-color: #90EE90;
-  border: none;
-  outline: none;
+  background-color: #66CDAA;
 }
 
 .color-red {
   color: white;
   background-color: #FF6347;
-  border: none;
-  outline: none;
 }
 
 /*# sourceMappingURL=style.css.map */
