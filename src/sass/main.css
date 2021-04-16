@@ -9946,11 +9946,6 @@ button.btn {
   border: none;
 }
 
-.recipe {
-  background-color: #DCDCDC;
-  border-radius: 4px;
-}
-
 ::placeholder {
   color: white;
 }
@@ -9968,6 +9963,10 @@ button.btn {
 .color-red {
   color: white;
   background-color: #FF6347;
+}
+
+#recipes {
+  background-color: #F5F5F5;
 }
 
 /*# sourceMappingURL=main.css.map */

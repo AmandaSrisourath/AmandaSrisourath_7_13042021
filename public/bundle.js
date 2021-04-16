@@ -17998,7 +17998,7 @@ const recipes = [
             },
             {
                 "ingredient" : "Sucre",
-                "quantite" : 30,
+                "quantity" : 30,
                 "unit" : "grammes"
             },
             {
@@ -18030,7 +18030,7 @@ const recipes = [
             },
             {
                 "ingredient" : "Carotte",
-                "quantite" : 1
+                "quantity" : 1
             },
             {
                 "ingredient" : "Citron Vert",
@@ -19798,31 +19798,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _recipes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./recipes.js */ "./src/recipes.js");
 
 
-console.log(_recipes_js__WEBPACK_IMPORTED_MODULE_1__.default);
 
-const dropdown = document.querySelectorAll(".dropdown-input");
-
-dropdown.forEach((input) => {
-    let dropdownMenu;
-    input.addEventListener("focusin", function (event) {
-        let nextElement = input;
-        while (nextElement) {
-            nextElement = nextElement.nextElementSibling;
-            if (nextElement.classList.contains("dropdown-menu")) {
-                nextElement.classList.add("show");
-                dropdownMenu = nextElement;
-                break;
-            }
-        }
-    });
-
-    input.addEventListener("focusout", function (event) {
-        dropdownMenu.classList.remove("show");
-    });
+_recipes_js__WEBPACK_IMPORTED_MODULE_1__.default.forEach((recipe) => {
+    const divRecipes = document.querySelector("#recipes");
+    const div = document.createElement("div");
+    div.classList.add("ingredients");
+    div.innerHTML = `${recipe.name} ${recipe.servings} ${recipe.time} ${recipe.description} ${recipe.appliance} ${recipe.ustensils}`;
+    divRecipes.appendChild(div);
 });
 
-const openDropdown = document.querySelector("#dropdown-btn");
-openDropdown.click();
+function dropdownOpen() {
+    const dropdown = document.querySelectorAll(".dropdown-input");
+    dropdown.forEach((input) => {
+        let dropdownMenu;
+        input.addEventListener("focusin", function (event) {
+            let nextElement = input;
+            while (nextElement) {
+                nextElement = nextElement.nextElementSibling;
+                if (nextElement.classList.contains("dropdown-menu")) {
+                    nextElement.classList.add("show");
+                    dropdownMenu = nextElement;
+                    break;
+                }
+            }
+        });
+        input.addEventListener("focusout", function (event) {
+            dropdownMenu.classList.remove("show");
+        });
+    });
+    const openDropdown = document.querySelector("#dropdown-btn");
+    openDropdown.click();
+}
+
+function run() {
+    dropdownOpen()
+}
+
+run();
 })();
 
 /******/ })()
