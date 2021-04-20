@@ -9965,8 +9965,62 @@ button.btn {
   background-color: #FF6347;
 }
 
-#recipes {
+.form-control {
   background-color: #F5F5F5;
+  border: none;
+  padding: 32px;
+}
+
+input {
+  padding: 16px;
+  width: 120px;
+  border-radius: 4px 0px 0px 4px;
+  border: none;
+  outline: none;
+}
+
+button.btn {
+  border: none;
+}
+
+::placeholder {
+  color: white;
+}
+
+.color-blue {
+  color: white;
+  background-color: #1E90FF;
+}
+
+.color-green {
+  color: white;
+  background-color: #66CDAA;
+}
+
+.color-red {
+  color: white;
+  background-color: #FF6347;
+}
+
+.recipe-content {
+  background-color: #F5F5F5;
+  height: 200px;
+}
+.recipe-content .name-time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.recipe-content .realisation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.recipe-content .realisation .preparation {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /*# sourceMappingURL=main.css.map */

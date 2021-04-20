@@ -4,9 +4,39 @@ import recipes from "./recipes.js";
 recipes.forEach((recipe) => {
     const divRecipes = document.querySelector("#recipes");
     const div = document.createElement("div");
-    div.classList.add("ingredients");
-    div.innerHTML = `${recipe.name} ${recipe.servings} ${recipe.time} ${recipe.description} ${recipe.appliance} ${recipe.ustensils}`;
+
+    /*const ingredients = recipe.ingredients;
+    ingredients.forEach((ingredient) => {
+        const divIngredients = document.createElement("div");
+        divIngredients.classList.add("ingredients");
+        divIngredients.getHTML = `<div class="ingredients">${ingredient.ingredient}</div>
+                                  <div class="quantity">${ingredient.quantity} ${ingredient.unit}</div>`;
+    });*/
+
+    div.classList.add("the-recipe");
+    div.innerHTML = `<div class="col">
+                        <div class="recipe-content rounded p-4 mb-4">
+                            <div class="name-time">
+                                <div class="recipe-name">${recipe.name}</div>
+                                <div class="time">${recipe.time} min</div>
+                            </div>
+                            <div class="realisation">
+                            
+                                <div class="preparation">${recipe.description}</div>
+                            </div>
+                        </div>
+                    </div>`;
     divRecipes.appendChild(div);
+    // divIngredients.appendChild(div);
+
+    /*const divNameTime = document.querySelector(".name-time");
+    divNameTime.insertAdjacentHTML('beforebegin', '<div class="name-time">')
+    console.log(divNameTime);
+
+    const divRecipeName = document.querySelector(".recipe-name");
+    divRecipeName.insertAdjacentHTML('afterbegin', '<div class="recipe-name">${recipe.name}</div>');
+    console.log(divRecipeName);*/
+
 });
 
 function dropdownOpen() {
