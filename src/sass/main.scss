@@ -79,18 +79,32 @@ button.btn {
   height: 200px;
   .name-time {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     margin-bottom: 16px;
-  }
-  .realisation {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    .preparation {
+    .recipe-name {
+      width: 210px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+    .time {
+      font-weight: bold;
+    }
   }
+  .realisation {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    line-height: 14px;
+    .preparation {
+      display: -webkit-box;
+      -webkit-line-clamp: 7;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+}
+
+p.preparation.col-6 {
+  padding-right: 0;
 }
