@@ -19834,7 +19834,7 @@ _recipes_js__WEBPACK_IMPORTED_MODULE_1__.default.forEach((recipe) => {
 
     div.classList.add("the-recipe");
     div.innerHTML = `<div class="col">
-                        <div class="recipe-content rounded p-4 mb-4">
+                        <div class="recipe-content rounded mb-4">
                             <div class="name-time">
                                 <div class="recipe-name">${recipe.name}</div>
                                 <div class="time">
