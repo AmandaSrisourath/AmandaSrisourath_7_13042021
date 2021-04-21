@@ -9934,6 +9934,12 @@ h3 {
   padding: 32px;
 }
 
+.bi-search {
+  position: absolute;
+  top: 160px;
+  right: 10%;
+}
+
 input {
   padding: 16px;
   width: 120px;
@@ -10002,6 +10008,11 @@ button.btn {
   background-color: #FF6347;
 }
 
+.image {
+  background-color: #A9A9A9;
+  height: 200px;
+}
+
 .recipe-content {
   background-color: #F5F5F5;
   height: 200px;
@@ -10010,21 +10021,26 @@ button.btn {
   display: flex;
   justify-content: space-between;
   margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 500;
 }
 .recipe-content .name-time .recipe-name {
-  width: 210px;
+  width: 60%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.recipe-content .name-time .time {
-  font-weight: bold;
+.recipe-content .name-time svg {
+  margin-bottom: 3px;
 }
 .recipe-content .realisation {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
   line-height: 14px;
+}
+.recipe-content .realisation .ingredients-quantity > span {
+  font-weight: 600;
 }
 .recipe-content .realisation .preparation {
   display: -webkit-box;
