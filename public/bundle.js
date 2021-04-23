@@ -19819,21 +19819,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_recipes_js__WEBPACK_IMPORTED_MODULE_1__.default.forEach((recipe) => {
-    const divRecipes = document.querySelector("#recipes");
-    const div = document.createElement("div");
-
-    const divIngredients = document.createElement("div");
-    const ingredients = recipe.ingredients;
-    ingredients.forEach((ingredient) => {
+function displayRecipes() {
+    _recipes_js__WEBPACK_IMPORTED_MODULE_1__.default.forEach((recipe) => {
+        const divRecipes = document.querySelector("#recipes");
         const div = document.createElement("div");
-        div.classList.add("ingredients");
-        div.innerHTML = `<div class="ingredients-quantity"><span>${ingredient.ingredient}:</span> ${ingredient.quantity} ${ingredient.unit || ''}</div>`;
-        divIngredients.appendChild(div);
-    });
 
-    div.classList.add("the-recipe");
-    div.innerHTML = `<div class="col">
+        const divIngredients = document.createElement("div");
+        const ingredients = recipe.ingredients;
+        ingredients.forEach((ingredient) => {
+            const div = document.createElement("div");
+            div.classList.add("ingredients");
+            div.innerHTML = `<div class="ingredients-quantity"><span>${ingredient.ingredient}:</span> ${ingredient.quantity} ${ingredient.unit || ''}</div>`;
+            divIngredients.appendChild(div);
+        });
+
+        div.classList.add("the-recipe");
+        div.innerHTML = `<div class="col">
                         <div class="recipe-content rounded mb-4">
                             <div class="name-time">
                                 <div class="recipe-name">${recipe.name}</div>
@@ -19851,8 +19852,9 @@ _recipes_js__WEBPACK_IMPORTED_MODULE_1__.default.forEach((recipe) => {
                             </div>
                         </div>
                     </div>`;
-    divRecipes.appendChild(div);
-});
+        divRecipes.appendChild(div);
+    });
+}
 
 function dropdownOpen() {
     const dropdown = document.querySelectorAll(".dropdown-input");
@@ -19879,6 +19881,7 @@ function dropdownOpen() {
 
 function run() {
     dropdownOpen()
+    displayRecipes()
 }
 
 run();
