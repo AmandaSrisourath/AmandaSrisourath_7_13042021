@@ -18,20 +18,29 @@ function bindInput() {
 function filterAndCreateRecipes(text, recipes = recipesData) {
     let newRecipes = [];
     recipes.forEach((recipe) => {
+        let recipeFound = false;
         const name = recipe.name;
         const description = recipe.description;
         const ingredients = recipe.ingredients;
 
+        const regex = new RegExp(text, 'i');
+
         ingredients.forEach((ingredient) => {
             const ingredientName = ingredient.ingredient;
-            if (ingredientName.includes(text)) {
-                newRecipes.push(recipe);
+            if (ingredientName.match(regex)) {
+                recipeFound = true;
             }
         });
 
-        if (name.includes(text)) {
-            newRecipes.push(recipe);
-        } else if (description.includes(text)) {
+        if (name.match(regex)) {
+            recipeFound = true;
+        }
+
+        if (description.match(regex)) {
+            recipeFound = true;
+        }
+
+        if (recipeFound === true) {
             newRecipes.push(recipe);
         }
     });
