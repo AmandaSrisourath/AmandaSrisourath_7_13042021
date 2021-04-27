@@ -1,7 +1,52 @@
 import "bootstrap";
-import recipes from "./recipes.js";
+import recipesData from "./recipes.js";
 
-function displayRecipes() {
+function bindInput() {
+    const input = document.querySelector("#research");
+    input.addEventListener("keyup", function(event) {
+        let inputValue = event.target.value;
+        if (inputValue.length >= 3) {
+            filterAndCreateRecipes(inputValue);
+        }
+
+        if (inputValue.length === 0) {
+            displayRecipes();
+        }
+    });
+}
+
+function filterAndCreateRecipes(text, recipes = recipesData) {
+    let newRecipes = [];
+    recipes.forEach((recipe) => {
+        const name = recipe.name;
+        const description = recipe.description;
+        const ingredients = recipe.ingredients;
+
+        ingredients.forEach((ingredient) => {
+            const ingredientName = ingredient.ingredient;
+            if (ingredientName.includes(text)) {
+                newRecipes.push(recipe);
+            }
+        });
+
+        if (name.includes(text)) {
+            newRecipes.push(recipe);
+        } else if (description.includes(text)) {
+            newRecipes.push(recipe);
+        }
+    });
+    displayRecipes(newRecipes);
+}
+
+function displayRecipes(recipes = recipesData) {
+    const recipesDiv = document.getElementById("recipes");
+    recipesDiv.innerHTML = "";
+
+    if (recipes.length === 0) {
+        recipesDiv.innerHTML = 'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.';
+        return;
+    }
+
     recipes.forEach((recipe) => {
         const divRecipes = document.querySelector("#recipes");
         const div = document.createElement("div");
@@ -64,6 +109,7 @@ function dropdownOpen() {
 function run() {
     dropdownOpen()
     displayRecipes()
+    bindInput()
 }
 
 run();
