@@ -19825,9 +19825,7 @@ function bindInput() {
         let inputValue = event.target.value;
         if (inputValue.length >= 3) {
             filterAndCreateRecipes(inputValue);
-        }
-
-        if (inputValue.length === 0) {
+        } else {
             displayRecipes();
         }
     });
@@ -19836,31 +19834,28 @@ function bindInput() {
 function filterAndCreateRecipes(text, recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.default) {
     let newRecipes = [];
     recipes.forEach((recipe) => {
-        let recipeFound = false;
         const name = recipe.name;
         const description = recipe.description;
         const ingredients = recipe.ingredients;
-
         const regex = new RegExp(text, 'i');
+
+        if (name.match(regex)) {
+            newRecipes.push(recipe);
+            return;
+        }
+
+        if (description.match(regex)) {
+            newRecipes.push(recipe);
+            return;
+        }
 
         ingredients.forEach((ingredient) => {
             const ingredientName = ingredient.ingredient;
             if (ingredientName.match(regex)) {
-                recipeFound = true;
+                newRecipes.push(recipe);
+                return;
             }
         });
-
-        if (name.match(regex)) {
-            recipeFound = true;
-        }
-
-        if (description.match(regex)) {
-            recipeFound = true;
-        }
-
-        if (recipeFound === true) {
-            newRecipes.push(recipe);
-        }
     });
     displayRecipes(newRecipes);
 }
