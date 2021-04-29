@@ -16,24 +16,23 @@ function bindInput() {
 function filterAndCreateRecipes(text, recipes = recipesData) {
     let newRecipes = [];
     recipes.forEach((recipe) => {
-        const name = recipe.name;
-        const description = recipe.description;
+        const name = recipe.name.toLowerCase();
+        const description = recipe.description.toLowerCase();
         const ingredients = recipe.ingredients;
-        const regex = new RegExp(text, 'i');
 
-        if (name.match(regex)) {
+        if (name.includes(text)) {
             newRecipes.push(recipe);
             return;
         }
 
-        if (description.match(regex)) {
+        if (description.includes(text)) {
             newRecipes.push(recipe);
             return;
         }
 
         ingredients.forEach((ingredient) => {
-            const ingredientName = ingredient.ingredient;
-            if (ingredientName.match(regex)) {
+            const ingredientName = ingredient.ingredient.toLowerCase();
+            if (ingredientName.includes(text)) {
                 newRecipes.push(recipe);
                 return;
             }
