@@ -30,22 +30,25 @@ button.btn {
 .color-blue {
   color: white;
   background-color: #1E90FF;
-
 }
 
 .color-green {
+  margin-left: 16px;
   color: white;
   background-color: #66CDAA;
 }
 
 .color-red {
+  margin-left: 16px;
   color: white;
   background-color: #FF6347;
-}.form-control {
+}
+
+.form-control {
    background-color: #F5F5F5;
    border: none;
    padding: 32px;
- }
+}
 
 input {
   position: relative;

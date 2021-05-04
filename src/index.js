@@ -85,6 +85,7 @@ function displayRecipes(recipes = recipesData) {
                     </div>`;
         divRecipes.appendChild(div);
     });
+    updateDropdowns(recipes);
 }
 
 function dropdownOpen() {
@@ -106,14 +107,68 @@ function dropdownOpen() {
             dropdownMenu.classList.remove("show");
         });
     });
-    const openDropdown = document.querySelector("#dropdown-btn");
+    const openDropdown = document.querySelector(".btn");
     openDropdown.click();
 }
 
+function updateDropdowns(recipes = recipesData) {
+    const ingredientsDropdown = document.querySelector("#dropdown-menu-ing");
+    ingredientsDropdown.innerHTML = "";
+
+    const appliancesDropdown = document.querySelector("#dropdown-menu-app");
+    appliancesDropdown.innerHTML = "";
+
+    const ustensilsDropdown = document.querySelector("#dropdown-menu-ust");
+    ustensilsDropdown.innerHTML = "";
+
+    recipes.forEach((recipe) => {
+        const ingredients = recipe.ingredients;
+        ingredients.forEach((ingredient) => {
+            const a = document.createElement("a");
+            a.classList.add("dropdown-item");
+            a.innerHTML = ingredient.ingredient;
+            ingredientsDropdown.appendChild(a);
+        })
+
+        const appliancesLink = document.createElement("a");
+        appliancesLink.classList.add("dropdown-item");
+        appliancesLink.innerHTML = recipe.appliance;
+        appliancesDropdown.appendChild(appliancesLink);
+
+        const ustensilsLink = document.createElement("a");
+        ustensilsLink.classList.add("dropdown-item");
+        ustensilsLink.innerHTML = recipe.ustensils;
+        ustensilsDropdown.appendChild(ustensilsLink);
+    })
+}
+
+function displayDropdown() {
+    const dropdownContent = document.querySelector("#dropdown-content");
+    const div = document.createElement("div");
+    div.classList.add("btn-group");
+    div.innerHTML = `<input type="text" class="color-blue dropdown-input" placeholder="Ingrédients" />
+                     <button id="dropdown-btn" type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split color-blue">
+                        <span class="sr-only">Toggle Dropdown</span>
+                     </button>
+                     
+                     <input type="text" class="color-green dropdown-input" placeholder="Appareils" />
+                     <button id="dropdown-btn" type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split color-green">
+                        <span class="sr-only">Toggle Dropdown</span>
+                     </button>
+
+                     <input type="text" class="color-red dropdown-input" placeholder="Ustensiles" />
+                     <button id="dropdown-btn" type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split color-red">
+                        <span class="sr-only">Toggle Dropdown</span>
+                     </button>`
+    dropdownContent.appendChild(div);
+}
+
 function run() {
-    dropdownOpen()
-    displayRecipes()
-    bindInput()
+    dropdownOpen();
+    updateDropdowns();
+    // displayDropdown();
+    displayRecipes();
+    bindInput();
 }
 
 run();

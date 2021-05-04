@@ -9962,11 +9962,13 @@ button.btn {
 }
 
 .color-green {
+  margin-left: 16px;
   color: white;
   background-color: #66CDAA;
 }
 
 .color-red {
+  margin-left: 16px;
   color: white;
   background-color: #FF6347;
 }
