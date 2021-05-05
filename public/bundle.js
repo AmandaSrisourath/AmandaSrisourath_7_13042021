@@ -19907,7 +19907,7 @@ function displayRecipes(recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.defau
 }
 
 function dropdownOpen() {
-    const dropdown = document.querySelectorAll(".dropdown-input");
+    /*const dropdown = document.querySelectorAll(".dropdown-input");
     dropdown.forEach((input) => {
         let dropdownMenu;
         input.addEventListener("focusin", function (event) {
@@ -19924,9 +19924,49 @@ function dropdownOpen() {
         input.addEventListener("focusout", function (event) {
             dropdownMenu.classList.remove("show");
         });
-    });
-    const openDropdown = document.querySelector(".btn");
-    openDropdown.click();
+    });*/
+}
+
+const ingredientsDropdownInput = document.querySelector("#ingredients-dropdown-input");
+ingredientsDropdownInput.addEventListener("click",openDropdownIngredients);
+
+const ingredientsDropdownContent = document.querySelector("#dropdown-menu-ing");
+ingredientsDropdownContent.addEventListener("click",closeDropdownIngredients);
+
+function openDropdownIngredients() {
+    ingredientsDropdownContent.style.display = "grid";
+}
+
+function closeDropdownIngredients() {
+    ingredientsDropdownContent.style.display = "none";
+}
+
+const appliancesDropdownInput = document.querySelector("#appliances-dropdown-input");
+appliancesDropdownInput.addEventListener("click",openDropdownAppliances);
+
+const appliancesDropdownContent = document.querySelector("#dropdown-menu-app");
+appliancesDropdownContent.addEventListener("click",closeDropdownAppliances);
+
+function openDropdownAppliances() {
+    appliancesDropdownContent.style.display = "grid";
+}
+
+function closeDropdownAppliances() {
+    appliancesDropdownContent.style.display = "none";
+}
+
+const ustensilsDropdownInput = document.querySelector("#ustensils-dropdown-input");
+ustensilsDropdownInput.addEventListener("click",openDropdownUstensils);
+
+const ustensilsDropdownContent = document.querySelector("#dropdown-menu-ust");
+ustensilsDropdownContent.addEventListener("click",closeDropdownUstensils);
+
+function openDropdownUstensils() {
+    ustensilsDropdownContent.style.display = "grid";
+}
+
+function closeDropdownUstensils() {
+    ustensilsDropdownContent.style.display = "none";
 }
 
 function updateDropdowns(recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.default) {
@@ -19986,7 +20026,7 @@ function run() {
     updateDropdowns();
     // displayDropdown();
     displayRecipes();
-    bindInput();
+    bindInput()
 }
 
 run();

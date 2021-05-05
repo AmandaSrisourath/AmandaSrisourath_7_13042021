@@ -1,86 +1,68 @@
 @import "custom";
 
+input {
+  padding: 16px;
+  width: 120px;
+  border-radius: 4px 0px 0px 4px;
+  border: none;
+  outline: none;
+}
+
 .form-control {
   background-color: #F5F5F5;
   border: none;
   padding: 32px;
 }
+
 .bi-search {
   position: absolute;
   top: 160px;
   right: 10%;
 }
 
-input {
-  padding: 16px;
-  width: 120px;
-  border-radius: 4px 0px 0px 4px;
-  border: none;
-  outline: none;
-}
-
-button.btn {
-  border: none;
-}
-
 ::placeholder {
   color: white;
 }
 
-.color-blue {
+button {
+  margin-right: 16px;
+}
+
+.btn {
+  border: none;
+}
+
+.color-blue, #dropdown-menu-ing {
   color: white;
   background-color: #1E90FF;
 }
 
-.color-green {
-  margin-left: 16px;
+.color-green, #dropdown-menu-app {
   color: white;
   background-color: #66CDAA;
 }
 
-.color-red {
-  margin-left: 16px;
+.color-red, #dropdown-menu-ust {
   color: white;
   background-color: #FF6347;
 }
 
-.form-control {
-   background-color: #F5F5F5;
-   border: none;
-   padding: 32px;
-}
-
-input {
-  position: relative;
-  padding: 16px;
-  width: 120px;
-  border-radius: 4px 0px 0px 4px;
-  border: none;
-  outline: none;
-}
-
-button.btn {
-  border: none;
-}
-
-::placeholder {
+.dropdown-menu {
+  display: none;
+  grid-template-columns: repeat(3, 190px);
   color: white;
+  font-size: 14px;
 }
 
-.color-blue {
+a.dropdown-item {
+  padding: 4px 16px;
   color: white;
-  background-color: #1E90FF;
-
+  white-space: normal;
 }
 
-.color-green {
-  color: white;
-  background-color: #66CDAA;
-}
-
-.color-red {
-  color: white;
-  background-color: #FF6347;
+.dropdown-item:hover {
+  background-color: initial;
+  cursor: pointer;
 }
 
 .image {
