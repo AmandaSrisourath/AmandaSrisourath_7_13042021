@@ -89,7 +89,7 @@ function displayRecipes(recipes = recipesData) {
 }
 
 function dropdownOpen() {
-    /*const dropdown = document.querySelectorAll(".dropdown-input");
+    const dropdown = document.querySelectorAll(".dropdown-input");
     dropdown.forEach((input) => {
         let dropdownMenu;
         input.addEventListener("focusin", function (event) {
@@ -97,58 +97,16 @@ function dropdownOpen() {
             while (nextElement) {
                 nextElement = nextElement.nextElementSibling;
                 if (nextElement.classList.contains("dropdown-menu")) {
-                    nextElement.classList.add("show");
+                    nextElement.style.display = "grid";
                     dropdownMenu = nextElement;
                     break;
                 }
             }
         });
         input.addEventListener("focusout", function (event) {
-            dropdownMenu.classList.remove("show");
+            dropdownMenu.style.display = "none";
         });
-    });*/
-}
-
-const ingredientsDropdownInput = document.querySelector("#ingredients-dropdown-input");
-ingredientsDropdownInput.addEventListener("click",openDropdownIngredients);
-
-const ingredientsDropdownContent = document.querySelector("#dropdown-menu-ing");
-ingredientsDropdownContent.addEventListener("click",closeDropdownIngredients);
-
-function openDropdownIngredients() {
-    ingredientsDropdownContent.style.display = "grid";
-}
-
-function closeDropdownIngredients() {
-    ingredientsDropdownContent.style.display = "none";
-}
-
-const appliancesDropdownInput = document.querySelector("#appliances-dropdown-input");
-appliancesDropdownInput.addEventListener("click",openDropdownAppliances);
-
-const appliancesDropdownContent = document.querySelector("#dropdown-menu-app");
-appliancesDropdownContent.addEventListener("click",closeDropdownAppliances);
-
-function openDropdownAppliances() {
-    appliancesDropdownContent.style.display = "grid";
-}
-
-function closeDropdownAppliances() {
-    appliancesDropdownContent.style.display = "none";
-}
-
-const ustensilsDropdownInput = document.querySelector("#ustensils-dropdown-input");
-ustensilsDropdownInput.addEventListener("click",openDropdownUstensils);
-
-const ustensilsDropdownContent = document.querySelector("#dropdown-menu-ust");
-ustensilsDropdownContent.addEventListener("click",closeDropdownUstensils);
-
-function openDropdownUstensils() {
-    ustensilsDropdownContent.style.display = "grid";
-}
-
-function closeDropdownUstensils() {
-    ustensilsDropdownContent.style.display = "none";
+    });
 }
 
 function updateDropdowns(recipes = recipesData) {
