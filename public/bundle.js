@@ -18038,7 +18038,7 @@ const recipes = [
                 "quantity" : 5
             },
             {
-                "ingredient" : "Lait de Coco",
+                "ingredient" : "Lait de coco",
                 "quantity" : 100,
                 "unit" : "ml"
             }
@@ -19818,6 +19818,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _recipes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./recipes.js */ "./src/recipes.js");
 
 
+let ingredients;
+let appliances;
+let ustensils;
 
 function bindInput() {
     const input = document.querySelector("#research");
@@ -19874,8 +19877,8 @@ function displayRecipes(recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.defau
         const div = document.createElement("div");
 
         const divIngredients = document.createElement("div");
-        const ingredients = recipe.ingredients;
-        ingredients.forEach((ingredient) => {
+        const recipeIngredients = recipe.ingredients;
+        recipeIngredients.forEach((ingredient) => {
             const div = document.createElement("div");
             div.classList.add("ingredients");
             div.innerHTML = `<div class="ingredients-quantity"><span>${ingredient.ingredient}:</span> ${ingredient.quantity} ${ingredient.unit || ''}</div>`;
@@ -19928,6 +19931,10 @@ function dropdownOpen() {
 }
 
 function updateDropdowns(recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.default) {
+    ingredients = [];
+    appliances = [];
+    ustensils = [];
+
     const ingredientsDropdown = document.querySelector("#dropdown-menu-ing");
     ingredientsDropdown.innerHTML = "";
 
@@ -19938,53 +19945,66 @@ function updateDropdowns(recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.defa
     ustensilsDropdown.innerHTML = "";
 
     recipes.forEach((recipe) => {
-        const ingredients = recipe.ingredients;
-        ingredients.forEach((ingredient) => {
+        recipe.ingredients.forEach((ingredient) => {
             const a = document.createElement("a");
             a.classList.add("dropdown-item");
             a.innerHTML = ingredient.ingredient;
+            ingredients.push(ingredient.ingredient);
             ingredientsDropdown.appendChild(a);
         })
 
         const appliancesLink = document.createElement("a");
         appliancesLink.classList.add("dropdown-item");
         appliancesLink.innerHTML = recipe.appliance;
+        appliances.push(recipe.appliance);
         appliancesDropdown.appendChild(appliancesLink);
 
-        const ustensilsLink = document.createElement("a");
-        ustensilsLink.classList.add("dropdown-item");
-        ustensilsLink.innerHTML = recipe.ustensils;
-        ustensilsDropdown.appendChild(ustensilsLink);
+        recipe.ustensils.forEach((ustensil) => {
+            const ustensilsLink = document.createElement("a");
+            ustensilsLink.classList.add("dropdown-item");
+            ustensilsLink.innerHTML = ustensil;
+            ustensils.push(ustensil);
+            ustensilsDropdown.appendChild(ustensilsLink);
+        })
     })
+    ingredients = [...new Set(ingredients)];
 }
 
-function displayDropdown() {
-    const dropdownContent = document.querySelector("#dropdown-content");
-    const div = document.createElement("div");
-    div.classList.add("btn-group");
-    div.innerHTML = `<input type="text" class="color-blue dropdown-input" placeholder="Ingrédients" />
-                     <button id="dropdown-btn" type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split color-blue">
-                        <span class="sr-only">Toggle Dropdown</span>
-                     </button>
-                     
-                     <input type="text" class="color-green dropdown-input" placeholder="Appareils" />
-                     <button id="dropdown-btn" type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split color-green">
-                        <span class="sr-only">Toggle Dropdown</span>
-                     </button>
+function bindDropdowns() {
+    const dropdownInput = document.querySelectorAll(".dropdown-input");
+    dropdownInput.forEach((dropdown) => dropdown.addEventListener("keyup", function (event) {
+        let inputValue = event.target.value;
+        filterAndCreateDropdown(inputValue);
+    }));
+}
 
-                     <input type="text" class="color-red dropdown-input" placeholder="Ustensiles" />
-                     <button id="dropdown-btn" type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split color-red">
-                        <span class="sr-only">Toggle Dropdown</span>
-                     </button>`
-    dropdownContent.appendChild(div);
+function filterAndCreateDropdown(text) {
+    let newIngredients = [];
+    const regex = new RegExp(text, 'i');
+    ingredients.forEach((ingredient) => {
+        const ingredientName = ingredient;
+        if (ingredientName.match(regex)) {
+            newIngredients.push(ingredient);
+            return;
+        }
+    });
+    const ingredientsDropdown = document.querySelector("#dropdown-menu-ing");
+    ingredientsDropdown.innerHTML = "";
+
+    newIngredients.forEach((ingredient) => {
+        const a = document.createElement("a");
+        a.classList.add("dropdown-item");
+        a.innerHTML = ingredient;
+        ingredientsDropdown.appendChild(a);
+    })
 }
 
 function run() {
     dropdownOpen();
     updateDropdowns();
-    // displayDropdown();
     displayRecipes();
-    bindInput()
+    bindInput();
+    bindDropdowns();
 }
 
 run();
