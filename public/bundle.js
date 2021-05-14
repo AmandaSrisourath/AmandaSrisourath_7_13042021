@@ -18146,7 +18146,7 @@ const recipes = [
                 "unit": "cuillères à soupe"
             },
             {
-                "ingredient": "gruyère râpé",
+                "ingredient": "Gruyère râpé",
                 "quantity": 100,
                 "unit": "g"
             },
@@ -18262,7 +18262,7 @@ const recipes = [
                 "unit": "g"
             },
             {
-                "ingredient": "farine",
+                "ingredient": "Farine",
                 "quantity": 90,
                 "unit": "g"
             }
@@ -19818,6 +19818,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _recipes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./recipes.js */ "./src/recipes.js");
 
 
+
 let ingredients;
 let appliances;
 let ustensils;
@@ -19856,7 +19857,6 @@ function filterAndCreateRecipes(text, recipes = _recipes_js__WEBPACK_IMPORTED_MO
             const ingredientName = ingredient.ingredient;
             if (ingredientName.match(regex)) {
                 newRecipes.push(recipe);
-                return;
             }
         });
     });
@@ -19913,7 +19913,7 @@ function dropdownOpen() {
     const dropdown = document.querySelectorAll(".dropdown-input");
     dropdown.forEach((input) => {
         let dropdownMenu;
-        input.addEventListener("focusin", function (event) {
+        input.addEventListener("focusin", function () {
             let nextElement = input;
             while (nextElement) {
                 nextElement = nextElement.nextElementSibling;
@@ -19924,7 +19924,7 @@ function dropdownOpen() {
                 }
             }
         });
-        input.addEventListener("focusout", function (event) {
+        input.addEventListener("focusout", function () {
             dropdownMenu.style.display = "none";
         });
     });
@@ -19946,30 +19946,44 @@ function updateDropdowns(recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.defa
 
     recipes.forEach((recipe) => {
         recipe.ingredients.forEach((ingredient) => {
-            const a = document.createElement("a");
-            a.classList.add("dropdown-item");
-            a.innerHTML = ingredient.ingredient;
-            ingredients.push(ingredient.ingredient);
-            ingredientsDropdown.appendChild(a);
+            const ingredientIndex = ingredients.findIndex((item) => item.toLowerCase() === ingredient.ingredient.toLowerCase());
+            if (ingredientIndex === -1) {
+                const a = document.createElement("a");
+                a.classList.add("dropdown-item");
+                a.innerHTML = ingredient.ingredient;
+
+                ingredientsDropdown.appendChild(a);
+                a.onclick = function (event) {
+                    let dropdownValue = event.target.value;
+                    console.log(event);
+                    console.log(dropdownValue);
+
+                }
+                ingredients.push(ingredient.ingredient);
+            }
         })
 
-        const appliancesLink = document.createElement("a");
-        appliancesLink.classList.add("dropdown-item");
-        appliancesLink.innerHTML = recipe.appliance;
-        appliances.push(recipe.appliance);
-        appliancesDropdown.appendChild(appliancesLink);
+        const applianceIndex = appliances.findIndex((item) => item.toLowerCase() === recipe.appliance.toLowerCase());
+        if (applianceIndex === -1) {
+            const appliancesLink = document.createElement("a");
+            appliancesLink.classList.add("dropdown-item");
+            appliancesLink.innerHTML = recipe.appliance;
+            appliances.push(recipe.appliance);
+            appliancesDropdown.appendChild(appliancesLink);
+        }
+
 
         recipe.ustensils.forEach((ustensil) => {
-            const ustensilsLink = document.createElement("a");
-            ustensilsLink.classList.add("dropdown-item");
-            ustensilsLink.innerHTML = ustensil;
-            ustensils.push(ustensil);
-            ustensilsDropdown.appendChild(ustensilsLink);
+            const ustensilIndex = ustensils.findIndex((item) => item.toLowerCase() === ustensil.toLowerCase());
+            if (ustensilIndex === -1) {
+                const ustensilsLink = document.createElement("a");
+                ustensilsLink.classList.add("dropdown-item");
+                ustensilsLink.innerHTML = ustensil;
+                ustensils.push(ustensil);
+                ustensilsDropdown.appendChild(ustensilsLink);
+            }
         })
     })
-    ingredients = [...new Set(ingredients)];
-    ustensils = [...new Set(ustensils)];
-    appliances = [...new Set(appliances)];
 }
 
 function bindIngredients() {
@@ -20000,10 +20014,8 @@ function filterAndCreateIngredients(text) {
     let newIngredients = [];
     const regex = new RegExp(text, 'i');
     ingredients.forEach((ingredient) => {
-        const ingredientName = ingredient;
-        if (ingredientName.match(regex)) {
+        if (ingredient.match(regex)) {
             newIngredients.push(ingredient);
-            return;
         }
     });
     const ingredientsDropdown = document.querySelector("#dropdown-menu-ing");
@@ -20021,10 +20033,8 @@ function filterAndCreateAppliances(text) {
     let newAppliances = [];
     const regex = new RegExp(text, 'i');
     appliances.forEach((appliance) => {
-        const appliancesName = appliance;
-        if (appliancesName.match(regex)) {
+        if (appliance.match(regex)) {
             newAppliances.push(appliance);
-            return;
         }
     });
     const appliancesDropdown = document.querySelector("#dropdown-menu-app");
@@ -20042,10 +20052,8 @@ function filterAndCreateUstensils(text) {
     let newUstensils = [];
     const regex = new RegExp(text, 'i');
     ustensils.forEach((ustensil) => {
-        const ustensilName = ustensil;
-        if (ustensilName.match(regex)) {
+        if (ustensil.match(regex)) {
             newUstensils.push(ustensil);
-            return;
         }
     })
     const ustensilsDropdown = document.querySelector("#dropdown-menu-ust");
@@ -20059,9 +20067,23 @@ function filterAndCreateUstensils(text) {
     })
 }
 
+const dropdownItems = document.querySelectorAll(".dropdown-item");
+console.log(dropdownItems);
+dropdownItems.forEach((elt) => elt.addEventListener("click", function () {
+
+}));
+
+const filterTags = {
+    ingredients: [],
+    appliances: [],
+    ustensils: []
+}
+
+filterTags.ingredients.push('Lait de coco');
+console.log(filterTags);
+
 function run() {
     dropdownOpen();
-    updateDropdowns();
     displayRecipes();
     bindInput();
     bindIngredients();

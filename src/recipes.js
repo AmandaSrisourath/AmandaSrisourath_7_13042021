@@ -168,7 +168,7 @@ const recipes = [
                 "unit": "cuillères à soupe"
             },
             {
-                "ingredient": "gruyère râpé",
+                "ingredient": "Gruyère râpé",
                 "quantity": 100,
                 "unit": "g"
             },
@@ -284,7 +284,7 @@ const recipes = [
                 "unit": "g"
             },
             {
-                "ingredient": "farine",
+                "ingredient": "Farine",
                 "quantity": 90,
                 "unit": "g"
             }
