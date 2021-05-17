@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="fontawesome-free-5.15.1-web/css/all.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <title>Les petits plats</title>
 </head>
@@ -15,16 +16,17 @@
         </div>
 
         <nav>
-            <div class="container">
+            <div class="container p-3">
                 <input id="research" class="form-control" name="research" type="search" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette" />
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
+                <span><i class="fas fa-search"></i></span>
             </div>
         </nav>
     </header>
 
     <main>
+        <div id="tags" class="container">
+        </div>
+
         <div id="dropdown-content" class="container p-3">
             <div class="btn-group">
                 <input id="ingredients-input" type="text" class="color-blue dropdown-input" placeholder="Ingrédients" />

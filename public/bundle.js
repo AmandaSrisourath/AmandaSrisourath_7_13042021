@@ -19823,6 +19823,8 @@ let ingredients;
 let appliances;
 let ustensils;
 
+const ingredientsFilter = [];
+
 function bindInput() {
     const input = document.querySelector("#research");
     input.addEventListener("keyup", function(event) {
@@ -19925,7 +19927,7 @@ function dropdownOpen() {
             }
         });
         input.addEventListener("focusout", function () {
-            dropdownMenu.style.display = "none";
+            setTimeout(() => dropdownMenu.style.display = "none", 100);
         });
     });
 }
@@ -19954,10 +19956,15 @@ function updateDropdowns(recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.defa
 
                 ingredientsDropdown.appendChild(a);
                 a.onclick = function (event) {
-                    let dropdownValue = event.target.value;
-                    console.log(event);
-                    console.log(dropdownValue);
-
+                    let dropdownValue = event.target.innerHTML;
+                    // console.log(dropdownValue);
+                    ingredientsFilter.push(dropdownValue);
+                    const tags = document.querySelector("#tags");
+                    const div = document.createElement("div");
+                    div.classList.add("container", "rounded", "tag", "color-blue");
+                    div.innerHTML = `${dropdownValue}
+                                     <i class="far fa-times-circle crosses"></i>`
+                    tags.appendChild(div);
                 }
                 ingredients.push(ingredient.ingredient);
             }
@@ -19971,7 +19978,6 @@ function updateDropdowns(recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.defa
             appliances.push(recipe.appliance);
             appliancesDropdown.appendChild(appliancesLink);
         }
-
 
         recipe.ustensils.forEach((ustensil) => {
             const ustensilIndex = ustensils.findIndex((item) => item.toLowerCase() === ustensil.toLowerCase());
@@ -20067,6 +20073,14 @@ function filterAndCreateUstensils(text) {
     })
 }
 
+const crosses = document.querySelectorAll(".crosses");
+crosses.forEach((cross) => cross.addEventListener("click", closeTag));
+
+function closeTag () {
+    crosses.style.display = "none";
+}
+
+/*
 const dropdownItems = document.querySelectorAll(".dropdown-item");
 console.log(dropdownItems);
 dropdownItems.forEach((elt) => elt.addEventListener("click", function () {
@@ -20081,6 +20095,7 @@ const filterTags = {
 
 filterTags.ingredients.push('Lait de coco');
 console.log(filterTags);
+*/
 
 function run() {
     dropdownOpen();
