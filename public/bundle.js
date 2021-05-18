@@ -19958,12 +19958,7 @@ function updateDropdowns(recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.defa
                     div.innerHTML = `${dropdownValue}
                                      <i class="far fa-times-circle crosses"></i>`
                     div.dataset.value = dropdownValue;
-                    div.addEventListener("click", function () {
-                        div.remove();
-                    });
                     tags.appendChild(div);
-                    // ingredientsFilter.splice();
-                    console.log(ingredientsFilter);
                 }
                 ingredients.push(ingredient.ingredient);
             }
@@ -19991,12 +19986,20 @@ function updateDropdowns(recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.defa
     })
 }
 
-function bindIngredients() {
+function bindIngredients(div, dropdownValue) {
     const dropdownInput = document.querySelector("#ingredients-input");
     dropdownInput.addEventListener("keyup", function (event) {
         let inputValue = event.target.value;
         filterAndCreateIngredients(inputValue);
     });
+
+    const crosses = document.querySelectorAll(".crosses");
+    crosses.forEach((cross) => cross.addEventListener("click", function () {
+        this.parentElement.remove();
+        console.log(this); 
+        const index = ingredientsFilter.indexOf(dropdownValue);
+        ingredientsFilter.splice(index, 1);
+    }));
 }
 
 function bindAppliances() {
