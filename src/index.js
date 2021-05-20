@@ -1,11 +1,13 @@
 import "bootstrap";
 import recipesData from "./recipes.js";
+import recipes from "./recipes.js";
 let ingredients;
 let appliances;
 let ustensils;
 const ingredientsFilter = [];
 const appliancesFilter = [];
 const ustensilsFilter = [];
+let recipesFiltered = recipesData;
 
 function bindInput() {
     const input = document.querySelector("#research");
@@ -20,7 +22,8 @@ function bindInput() {
 }
 
 function filterAndCreateRecipes(text, recipes = recipesData) {
-    let newRecipes = [];
+    recipesFiltered = [];
+
     recipes.forEach((recipe) => {
         const name = recipe.name;
         const description = recipe.description;
@@ -28,21 +31,21 @@ function filterAndCreateRecipes(text, recipes = recipesData) {
         const regex = new RegExp(text, 'i');
 
         if (name.match(regex)) {
-            newRecipes.push(recipe);
+            recipesFiltered.push(recipe);
             return;
         }
         if (description.match(regex)) {
-            newRecipes.push(recipe);
+            recipesFiltered.push(recipe);
             return;
         }
         ingredients.forEach((ingredient) => {
             const ingredientName = ingredient.ingredient;
             if (ingredientName.match(regex)) {
-                newRecipes.push(recipe);
+                recipesFiltered.push(recipe);
             }
         });
     });
-    displayRecipes(newRecipes);
+    displayRecipes(recipesFiltered);
 }
 
 function displayRecipes(recipes = recipesData) {
@@ -50,7 +53,7 @@ function displayRecipes(recipes = recipesData) {
     recipesDiv.innerHTML = "";
 
     if (recipes.length === 0) {
-        recipesDiv.innerHTML = 'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.';
+        recipesDiv.innerHTML = '<span id="error">Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.</span>';
         return;
     }
 
@@ -221,6 +224,32 @@ function createAndBindIngredientItems(ingredient, ingredientsDropdown) {
     ingredientsDropdown.appendChild(a);
     a.onclick = function (event) {
         let dropdownValue = event.target.innerHTML;
+        ingredientsFilter.push(dropdownValue);
+        const tags = document.querySelector("#tags");
+        const div = document.createElement("div");
+        div.classList.add("container", "rounded", "tag", "color-blue");
+        const cross = document.createElement("i");
+        cross.classList.add("far", "fa-times-circle", "crosses");
+        div.innerHTML = `${dropdownValue}`
+        div.appendChild(cross);
+        cross.addEventListener("click", function () {
+            div.remove();
+            const index = ingredientsFilter.indexOf(dropdownValue);
+            ingredientsFilter.splice(index, 1);
+            filterRecipesByTags(recipesFiltered, ingredientsFilter);
+        });
+        tags.appendChild(div);
+        filterRecipesByTags(recipesFiltered, ingredientsFilter);
+    }
+}
+
+function createAndBindApplianceItems(appliance, appliancesDropdown) {
+    const appliancesLink = document.createElement("a");
+    appliancesLink.classList.add("dropdown-item");
+    appliancesLink.innerHTML = appliance;
+    appliancesDropdown.appendChild(appliancesLink);
+    appliancesLink.onclick = function (event) {
+        let dropdownValue = event.target.innerHTML;
         appliancesFilter.push(dropdownValue);
         const tags = document.querySelector("#tags");
         const div = document.createElement("div");
@@ -233,30 +262,6 @@ function createAndBindIngredientItems(ingredient, ingredientsDropdown) {
             div.remove();
             const index = appliancesFilter.indexOf(dropdownValue);
             appliancesFilter.splice(index, 1);
-        });
-        tags.appendChild(div);
-    }
-}
-
-function createAndBindApplianceItems(appliance, appliancesDropdown) {
-    const appliancesLink = document.createElement("a");
-    appliancesLink.classList.add("dropdown-item");
-    appliancesLink.innerHTML = appliance;
-    appliancesDropdown.appendChild(appliancesLink);
-    appliancesLink.onclick = function (event) {
-        let dropdownValue = event.target.innerHTML;
-        ingredientsFilter.push(dropdownValue);
-        const tags = document.querySelector("#tags");
-        const div = document.createElement("div");
-        div.classList.add("container", "rounded", "tag", "color-green");
-        const cross = document.createElement("i");
-        cross.classList.add("far", "fa-times-circle", "crosses");
-        div.innerHTML = `${dropdownValue}`
-        div.appendChild(cross);
-        cross.addEventListener("click", function () {
-            div.remove();
-            const index = ingredientsFilter.indexOf(dropdownValue);
-            ingredientsFilter.splice(index, 1);
         });
         tags.appendChild(div);
     }
@@ -279,11 +284,22 @@ function createAndBindUstensilItems(ustensil, ustensilsDropdown) {
         div.appendChild(cross);
         cross.addEventListener("click", function () {
             div.remove();
-            const index = ingredientsFilter.indexOf(dropdownValue);
-            ingredientsFilter.splice(index, 1);
+            const index = ustensilsFilter.indexOf(dropdownValue);
+            ustensilsFilter.splice(index, 1);
         });
         tags.appendChild(div);
     }
+}
+
+function filterRecipesByTags(recipesFiltered, ingredientsFilter = [], appliancesFilter, ustensilsFilter) {
+    const newRecipesFiltered = [];
+    recipesFiltered.forEach((recipeFiltered) => {
+        const ingredientsArePresents = ingredientsFilter.every((ingredientsTag) => recipeFiltered.ingredients.some((ingredient) => ingredient.ingredient === ingredientsTag));
+        if (ingredientsArePresents) {
+            newRecipesFiltered.push(recipeFiltered);
+        }
+    });
+    displayRecipes(newRecipesFiltered);
 }
 
 function run() {

@@ -9931,7 +9931,7 @@ h3 {
 input {
   padding: 16px;
   width: 120px;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 4px 0 0 4px;
   border: none;
   outline: none;
 }
@@ -9954,8 +9954,13 @@ input {
 }
 
 button {
+  border-radius: 0 4px 4px 0;
   margin-right: 16px;
   border: none;
+}
+
+.fa-chevron-down {
+  padding-right: 12px;
 }
 
 .color-blue, #dropdown-menu-ing {
@@ -9991,17 +9996,16 @@ a.dropdown-item {
   cursor: pointer;
 }
 
-.image {
-  background-color: #A9A9A9;
-  height: 200px;
-}
-
-#recipes {
+#error {
+  display: flex;
   justify-content: center;
+  margin: auto;
+  flex: none;
+  max-width: none;
 }
 
 .recipe-content {
-  height: 300px;
+  height: 200px;
   background: linear-gradient(to top, #f5f5f5 0%, #f5f5f5 50%, #C7BEBE 50%, #C7BEBE 100%);
   padding: 200px 24px;
 }
@@ -10018,9 +10022,6 @@ a.dropdown-item {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.recipe-content .name-time svg {
-  margin-bottom: 3px;
 }
 .recipe-content .realisation {
   display: flex;
@@ -10044,13 +10045,13 @@ p.preparation.col-6 {
 
 #tags {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .tag {
   width: fit-content;
   padding: 4px 16px;
-  margin-right: 6px;
-  margin-left: 0px;
+  margin: 0 6px 6px 0;
   font-size: 14px;
 }
 
