@@ -236,10 +236,10 @@ function createAndBindIngredientItems(ingredient, ingredientsDropdown) {
             div.remove();
             const index = ingredientsFilter.indexOf(dropdownValue);
             ingredientsFilter.splice(index, 1);
-            filterRecipesByTags(recipesFiltered, ingredientsFilter);
+            filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
         });
         tags.appendChild(div);
-        filterRecipesByTags(recipesFiltered, ingredientsFilter);
+        filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
     }
 }
 
@@ -262,8 +262,10 @@ function createAndBindApplianceItems(appliance, appliancesDropdown) {
             div.remove();
             const index = appliancesFilter.indexOf(dropdownValue);
             appliancesFilter.splice(index, 1);
+            filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
         });
         tags.appendChild(div);
+        filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
     }
 }
 
@@ -286,16 +288,21 @@ function createAndBindUstensilItems(ustensil, ustensilsDropdown) {
             div.remove();
             const index = ustensilsFilter.indexOf(dropdownValue);
             ustensilsFilter.splice(index, 1);
+            filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
         });
         tags.appendChild(div);
+        filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
     }
 }
 
-function filterRecipesByTags(recipesFiltered, ingredientsFilter = [], appliancesFilter, ustensilsFilter) {
+function filterRecipesByTags(recipesFiltered, ingredientsFilter = [], appliancesFilter = [], ustensilsFilter = []) {
     const newRecipesFiltered = [];
     recipesFiltered.forEach((recipeFiltered) => {
         const ingredientsArePresents = ingredientsFilter.every((ingredientsTag) => recipeFiltered.ingredients.some((ingredient) => ingredient.ingredient === ingredientsTag));
-        if (ingredientsArePresents) {
+        const appliancesArePresents = appliancesFilter.every((appliancesTag) => recipeFiltered.appliance.includes(appliancesTag));
+        const ustensilsArePresents = ustensilsFilter.every((ustensilsTag) => recipeFiltered.ustensils.includes(ustensilsTag));
+
+        if (ingredientsArePresents && appliancesArePresents && ustensilsArePresents) {
             newRecipesFiltered.push(recipeFiltered);
         }
     });
