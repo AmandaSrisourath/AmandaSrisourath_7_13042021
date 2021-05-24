@@ -16,8 +16,8 @@
         </div>
 
         <nav>
-            <div class="container p-3">
-                <input id="research" class="form-control" name="research" type="search" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette" />
+            <div class="container p-3 input-group">
+                <input id="research" class="form-control rounded" name="research" type="search" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette" />
                 <span><i class="fas fa-search"></i></span>
             </div>
         </nav>
@@ -27,27 +27,33 @@
         <div id="tags" class="container">
         </div>
 
-        <div id="dropdown-content" class="container p-3">
+        <div id="dropdown-content" class="container">
             <div class="btn-group">
-                <input id="ingredients-input" type="text" class="color-blue dropdown-input" placeholder="Ingrédients" />
-                <button class="color-blue">
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div id="dropdown-menu-ing" class="dropdown-menu">
+                <div class="dropdown">
+                    <input id="ingredients-input" type="text" class="color-blue dropdown-input" placeholder="Ingrédients" />
+                    <button class="color-blue">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="dropdown-menu-ing" class="dropdown-menu">
+                    </div>
                 </div>
 
-                <input id="appliances-input" type="text" class="color-green dropdown-input" placeholder="Appareil" />
-                <button type="button" class="color-green">
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div id="dropdown-menu-app" class="dropdown-menu">
+                <div class="dropdown">
+                    <input id="appliances-input" type="text" class="color-green dropdown-input" placeholder="Appareil" />
+                    <button type="button" class="color-green">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="dropdown-menu-app" class="dropdown-menu">
+                    </div>
                 </div>
 
-                <input id="ustensils-input" type="text" class="color-red dropdown-input" placeholder="Ustensiles" />
-                <button type="button" class="color-red">
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div id="dropdown-menu-ust" class="dropdown-menu">
+                <div class="dropdown">
+                    <input id="ustensils-input" type="text" class="color-red dropdown-input" placeholder="Ustensiles" />
+                    <button type="button" class="color-red">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="dropdown-menu-ust" class="dropdown-menu">
+                    </div>
                 </div>
             </div>
         </div>
