@@ -9971,41 +9971,48 @@ input {
 #dropdown-content {
   margin-bottom: 24px;
 }
-#dropdown-content .dropdown {
-  height: 60px;
+#dropdown-content .btn-group {
   display: flex;
+  flex-wrap: wrap;
 }
-#dropdown-content .dropdown button {
+#dropdown-content .btn-group .dropdown {
+  display: flex;
+  height: 60px;
+  margin-bottom: 16px;
+}
+#dropdown-content .btn-group .dropdown button {
   border-radius: 0 4px 4px 0;
-  margin-right: 16px;
+  margin-right: 14px;
   border: none;
 }
-#dropdown-content .dropdown button .fa-chevron-down {
+#dropdown-content .btn-group .dropdown button .fa-chevron-down {
   padding-right: 12px;
 }
-#dropdown-content .dropdown .dropdown-input {
+#dropdown-content .btn-group .dropdown .dropdown-input {
   border-radius: 4px 0 0 4px;
   position: relative;
 }
-#dropdown-content .dropdown .dropdown-input:focus {
-  width: 534px;
+#dropdown-content .btn-group .dropdown .dropdown-input:focus {
+  width: 522px;
 }
-#dropdown-content .dropdown .dropdown-input:focus + button > i.fa-chevron-down {
+#dropdown-content .btn-group .dropdown .dropdown-input:focus + button > i.fa-chevron-down {
+  margin-top: 16px;
+  margin-right: 12px;
   transform: translateY(-50%) rotate(180deg);
 }
-#dropdown-content .dropdown .dropdown-menu {
+#dropdown-content .btn-group .dropdown .dropdown-menu {
   display: none;
   grid-template-columns: repeat(3, 190px);
   color: white;
   font-size: 14px;
   margin: 0;
 }
-#dropdown-content .dropdown .dropdown-menu a.dropdown-item {
+#dropdown-content .btn-group .dropdown .dropdown-menu a.dropdown-item {
   padding: 4px 16px;
   color: white;
   white-space: normal;
 }
-#dropdown-content .dropdown .dropdown-menu .dropdown-item:hover {
+#dropdown-content .btn-group .dropdown .dropdown-menu .dropdown-item:hover {
   background-color: initial;
   color: black;
   cursor: pointer;
@@ -10032,9 +10039,11 @@ input {
 #error {
   display: flex;
   justify-content: center;
+  flex: auto;
   margin: auto;
-  flex: none;
   max-width: none;
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
 .recipe-content {
@@ -10046,15 +10055,12 @@ input {
   display: flex;
   justify-content: space-between;
   margin-bottom: 16px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   padding-top: 16px;
 }
 .recipe-content .name-time .recipe-name {
-  width: 60%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 70%;
 }
 .recipe-content .realisation {
   display: flex;
@@ -10073,6 +10079,21 @@ input {
 }
 .recipe-content .realisation p.preparation.col-6 {
   padding-right: 0;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 767px) {
+  input, .dropdown {
+    width: 100%;
+  }
+
+  #dropdown-content .btn-group .dropdown button {
+    margin-right: 0;
+  }
+
+  #dropdown-content .btn-group .dropdown .dropdown-menu {
+    grid-template-columns: none;
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

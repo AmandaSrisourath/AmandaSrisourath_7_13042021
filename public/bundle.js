@@ -18275,7 +18275,7 @@ const recipes = [
     },
     {
         "id": 9,
-        "name": "Salade Méditerannéene fraiche au chèvre",
+        "name": "Salade Méditerranéenne fraiche au chèvre",
         "servings": 4,
         "ingredients":[
             {
@@ -18283,10 +18283,12 @@ const recipes = [
                 "quantity": 1
             },
             {
-                "ingredient": "Olives"
+                "ingredient": "Olives",
+                "quantity": 50,
+                "unit": "g"
             },
             {
-                "ingredient": "Fromage de chèvre",
+                "ingredient": "Fromage chèvre",
                 "quantity": 150,
                 "unit": "g"
             },
@@ -18469,7 +18471,7 @@ const recipes = [
 
             },
             {
-                "ingredient": "Fromage à raclette",
+                "ingredient": "Fromage raclette",
                 "quantity": 300,
                 "unit":"g"
             },
@@ -18651,7 +18653,7 @@ const recipes = [
                 "quantity": 1
             }
         ],
-        "time": 0,
+        "time": 2,
         "description":"Coupez les fruits en morceaux, ajouter le jus de citron et le lait ainsi que le sucre glace. Mixez. Ajoutez des glaçons si le lait n'a pas été mis au frais.",
         "appliance": "Blender",
         "ustensils":["Couteau", "Verres", "Presse citron"]
@@ -19676,11 +19678,11 @@ const recipes = [
             {
                 "ingredient": "Miel",
                 "quantity": 2,
-                "unit": "uillères à soupe"
+                "unit": "cuillères à soupe"
             }
         ],
-        "time": 0,
-        "description":"Découper les fruits. Le passer au blender jusqu'à obtenir une texture liquide. Mettre au frais. Servir",
+        "time": 2,
+        "description":"Découper les fruits. Les passer au blender jusqu'à obtenir une texture liquide. Mettre au frais. Servir",
         "appliance": "Blender",
         "ustensils":["Couteau", "Verres"]
     },
