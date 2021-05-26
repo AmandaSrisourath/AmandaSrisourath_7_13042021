@@ -9947,7 +9947,7 @@ nav .fa-search {
 #tags .tag {
   width: fit-content;
   padding: 4px 16px;
-  margin: 0 6px 6px 0;
+  margin: 0 8px 8px 0;
   font-size: 14px;
 }
 #tags .fa-times-circle {
@@ -9968,9 +9968,6 @@ input {
   color: white;
 }
 
-#dropdown-content {
-  margin-bottom: 24px;
-}
 #dropdown-content .btn-group {
   display: flex;
   flex-wrap: wrap;
