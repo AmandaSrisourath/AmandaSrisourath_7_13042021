@@ -19818,14 +19818,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _recipes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./recipes.js */ "./src/recipes.js");
 
 
-
 let ingredients;
 let appliances;
 let ustensils;
+let recipesFiltered = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.default;
 const ingredientsFilter = [];
 const appliancesFilter = [];
 const ustensilsFilter = [];
-let recipesFiltered = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.default;
 
 function bindInput() {
     const input = document.querySelector("#research");
@@ -19963,154 +19962,84 @@ function updateDropdowns(recipes = _recipes_js__WEBPACK_IMPORTED_MODULE_1__.defa
     })
 }
 
-function bindIngredients() {
-    const dropdownInput = document.querySelector("#ingredients-input");
+function bindDropdownFilter(selector, filterAction) {
+    const dropdownInput = document.querySelector(selector);
     dropdownInput.addEventListener("keyup", function (event) {
         let inputValue = event.target.value;
-        filterAndCreateIngredients(inputValue);
+        filterAction(inputValue);
     });
 }
 
-function bindAppliances() {
-    const dropdownInput = document.querySelector("#appliances-input");
-    dropdownInput.addEventListener("keyup", function (event) {
-        let inputValue = event.target.value;
-        filterAndCreateAppliances(inputValue);
-    });
+function bindDropdownsFilter() {
+    bindDropdownFilter("#ingredients-input", filterAndCreateIngredients);
+    bindDropdownFilter("#appliances-input", filterAndCreateAppliances);
+    bindDropdownFilter("#ustensils-input", filterAndCreateUstensils);
 }
 
-function bindUstensils() {
-    const dropdownInput = document.querySelector("#ustensils-input");
-    dropdownInput.addEventListener("keyup", function (event) {
-        let inputValue = event.target.value;
-        filterAndCreateUstensils(inputValue);
+function filterAndCreateDropdownItems(text, items, selector, createAction) {
+    let newItems = [];
+    const regex = new RegExp(text, 'i');
+    items.forEach((item) => {
+        if (item.match(regex)) {
+            newItems.push(item);
+        }
     });
+    const dropdown = document.querySelector(selector);
+    dropdown.innerHTML = "";
+
+    newItems.forEach((item) => {
+        createAction(item, dropdown);
+    })
 }
 
 function filterAndCreateIngredients(text) {
-    let newIngredients = [];
-    const regex = new RegExp(text, 'i');
-    ingredients.forEach((ingredient) => {
-        if (ingredient.match(regex)) {
-            newIngredients.push(ingredient);
-        }
-    });
-    const ingredientsDropdown = document.querySelector("#dropdown-menu-ing");
-    ingredientsDropdown.innerHTML = "";
-
-    newIngredients.forEach((ingredient) => {
-        createAndBindIngredientItems(ingredient, ingredientsDropdown);
-    })
+    filterAndCreateDropdownItems(text, ingredients, "#dropdown-menu-ing", createAndBindIngredientItems);
 }
 
 function filterAndCreateAppliances(text) {
-    let newAppliances = [];
-    const regex = new RegExp(text, 'i');
-    appliances.forEach((appliance) => {
-        if (appliance.match(regex)) {
-            newAppliances.push(appliance);
-        }
-    });
-    const appliancesDropdown = document.querySelector("#dropdown-menu-app");
-    appliancesDropdown.innerHTML = "";
-
-    newAppliances.forEach((appliance) => {
-        createAndBindApplianceItems(appliance, appliancesDropdown);
-    })
+    filterAndCreateDropdownItems(text, appliances, "#dropdown-menu-app", createAndBindApplianceItems);
 }
 
 function filterAndCreateUstensils(text) {
-    let newUstensils = [];
-    const regex = new RegExp(text, 'i');
-    ustensils.forEach((ustensil) => {
-        if (ustensil.match(regex)) {
-            newUstensils.push(ustensil);
-        }
-    })
-    const ustensilsDropdown = document.querySelector("#dropdown-menu-ust");
-    ustensilsDropdown.innerHTML = "";
+    filterAndCreateDropdownItems(text, ustensils, "#dropdown-menu-ust", createAndBindUstensilItems);
+}
 
-    newUstensils.forEach((ustensil) => {
-        createAndBindUstensilItems(ustensil, ustensilsDropdown);
-    })
+function createAndBindItems(item, itemsDropdown, itemsFilter, color) {
+    const a = document.createElement("a");
+    a.classList.add("dropdown-item");
+    a.innerHTML = item;
+    itemsDropdown.appendChild(a);
+    a.onclick = function (event) {
+        let dropdownValue = event.target.innerHTML;
+        itemsFilter.push(dropdownValue);
+        const tags = document.querySelector("#tags");
+        const div = document.createElement("div");
+        div.classList.add("container", "rounded", "tag", color);
+        const cross = document.createElement("i");
+        cross.classList.add("far", "fa-times-circle", "crosses");
+        div.innerHTML = `${dropdownValue}`
+        div.appendChild(cross);
+        cross.addEventListener("click", function () {
+            div.remove();
+            const index = itemsFilter.indexOf(dropdownValue);
+            itemsFilter.splice(index, 1);
+            filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
+        });
+        tags.appendChild(div);
+        filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
+    }
 }
 
 function createAndBindIngredientItems(ingredient, ingredientsDropdown) {
-    const a = document.createElement("a");
-    a.classList.add("dropdown-item");
-    a.innerHTML = ingredient;
-    ingredientsDropdown.appendChild(a);
-    a.onclick = function (event) {
-        let dropdownValue = event.target.innerHTML;
-        ingredientsFilter.push(dropdownValue);
-        const tags = document.querySelector("#tags");
-        const div = document.createElement("div");
-        div.classList.add("container", "rounded", "tag", "color-blue");
-        const cross = document.createElement("i");
-        cross.classList.add("far", "fa-times-circle", "crosses");
-        div.innerHTML = `${dropdownValue}`
-        div.appendChild(cross);
-        cross.addEventListener("click", function () {
-            div.remove();
-            const index = ingredientsFilter.indexOf(dropdownValue);
-            ingredientsFilter.splice(index, 1);
-            filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
-        });
-        tags.appendChild(div);
-        filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
-    }
+    createAndBindItems(ingredient, ingredientsDropdown, ingredientsFilter, "color-blue");
 }
 
 function createAndBindApplianceItems(appliance, appliancesDropdown) {
-    const appliancesLink = document.createElement("a");
-    appliancesLink.classList.add("dropdown-item");
-    appliancesLink.innerHTML = appliance;
-    appliancesDropdown.appendChild(appliancesLink);
-    appliancesLink.onclick = function (event) {
-        let dropdownValue = event.target.innerHTML;
-        appliancesFilter.push(dropdownValue);
-        const tags = document.querySelector("#tags");
-        const div = document.createElement("div");
-        div.classList.add("container", "rounded", "tag", "color-green");
-        const cross = document.createElement("i");
-        cross.classList.add("far", "fa-times-circle", "crosses");
-        div.innerHTML = `${dropdownValue}`
-        div.appendChild(cross);
-        cross.addEventListener("click", function () {
-            div.remove();
-            const index = appliancesFilter.indexOf(dropdownValue);
-            appliancesFilter.splice(index, 1);
-            filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
-        });
-        tags.appendChild(div);
-        filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
-    }
+    createAndBindItems(appliance, appliancesDropdown, appliancesFilter, "color-green");
 }
 
 function createAndBindUstensilItems(ustensil, ustensilsDropdown) {
-    const ustensilsLink = document.createElement("a");
-    ustensilsLink.classList.add("dropdown-item");
-    ustensilsLink.innerHTML = ustensil;
-    ustensilsDropdown.appendChild(ustensilsLink);
-    ustensilsLink.onclick = function (event) {
-        let dropdownValue = event.target.innerHTML;
-        ustensilsFilter.push(dropdownValue);
-        const tags = document.querySelector("#tags");
-        const div = document.createElement("div");
-        div.classList.add("container", "rounded", "tag", "color-red");
-        const cross = document.createElement("i");
-        cross.classList.add("far", "fa-times-circle", "crosses");
-        div.innerHTML = `${dropdownValue}`
-        div.appendChild(cross);
-        cross.addEventListener("click", function () {
-            div.remove();
-            const index = ustensilsFilter.indexOf(dropdownValue);
-            ustensilsFilter.splice(index, 1);
-            filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
-        });
-        tags.appendChild(div);
-        filterRecipesByTags(recipesFiltered, ingredientsFilter, appliancesFilter, ustensilsFilter);
-    }
+    createAndBindItems(ustensil, ustensilsDropdown, ustensilsFilter, "color-red");
 }
 
 function filterRecipesByTags(recipesFiltered, ingredientsFilter = [], appliancesFilter = [], ustensilsFilter = []) {
@@ -20131,9 +20060,7 @@ function run() {
     dropdownOpen();
     displayRecipes();
     bindInput();
-    bindIngredients();
-    bindAppliances();
-    bindUstensils();
+    bindDropdownsFilter();
 }
 
 run();

@@ -61,6 +61,9 @@ input {
     }
     .dropdown-input:focus {
       width: 534px;
+      & + button > i.fa-chevron-down {
+        transform: translateY(-50%) rotate(180deg);
+      }
     }
     .dropdown-menu {
       display: none;

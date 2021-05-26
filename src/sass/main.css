@@ -9990,6 +9990,9 @@ input {
 #dropdown-content .dropdown .dropdown-input:focus {
   width: 534px;
 }
+#dropdown-content .dropdown .dropdown-input:focus + button > i.fa-chevron-down {
+  transform: translateY(-50%) rotate(180deg);
+}
 #dropdown-content .dropdown .dropdown-menu {
   display: none;
   grid-template-columns: repeat(3, 190px);
