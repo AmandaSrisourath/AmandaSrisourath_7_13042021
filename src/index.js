@@ -227,8 +227,7 @@ function createAndBindUstensilItems(ustensil, ustensilsDropdown) {
 function filterRecipesByTags(recipesFiltered, ingredientsFilter = [], appliancesFilter = [], ustensilsFilter = []) {
     const newRecipesFiltered = [];
     recipesFiltered.forEach((recipeFiltered) => {
-        const ingredientsArePresents = ingredientsFilter.every((ingredientsTag) => recipeFiltered.ingredients.some((ingredient)
-            => ingredient.ingredient === ingredientsTag));
+        const ingredientsArePresents = ingredientsFilter.every((ingredientsTag) => recipeFiltered.ingredients.some((ingredient) => ingredient.ingredient === ingredientsTag));
         const appliancesArePresents = appliancesFilter.every((appliancesTag) => recipeFiltered.appliance.includes(appliancesTag));
         const ustensilsArePresents = ustensilsFilter.every((ustensilsTag) => recipeFiltered.ustensils.includes(ustensilsTag));
 
