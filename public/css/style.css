@@ -496,7 +496,7 @@ mark,
 code {
   font-size: 87.5%;
   color: #e83e8c;
-  word-wrap: break-word;
+  /*word-wrap: break-word;*/
 }
 a > code {
   color: inherit;
@@ -4313,7 +4313,7 @@ input[type=button].btn-block {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  word-wrap: break-word;
+  /*word-wrap: break-word;*/
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -5554,7 +5554,7 @@ a.close.disabled {
   white-space: normal;
   line-break: auto;
   font-size: 0.875rem;
-  word-wrap: break-word;
+  /*word-wrap: break-word;*/
   opacity: 0;
 }
 .tooltip.show {
@@ -5656,7 +5656,7 @@ a.close.disabled {
   white-space: normal;
   line-break: auto;
   font-size: 0.875rem;
-  word-wrap: break-word;
+  /*word-wrap: break-word;*/
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -9818,8 +9818,8 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .text-break {
-  word-break: break-word !important;
-  word-wrap: break-word !important;
+  /*word-break: break-word !important;*/
+  /*word-wrap: break-word !important;*/
 }
 
 .text-reset {
